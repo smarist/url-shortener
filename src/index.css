@@ -37,6 +37,29 @@ p{
   height: 20px;
 }
 
+.shortener{
+  width: 70%;
+  height: 17rem;
+  margin: auto;
+  background: hsl(257, 27%, 26%);
+  border-radius: 10px;
+}
+
+.shortener img{
+  height: 17rem;
+  width: 100%;
+  border-radius: 10px;
+  position: relative;
+}
+
+.form{
+  width: inherit;
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  transform: translate(-50%, -50%);
+}
+
 @media screen  and (max-width:  959px){
   .header{
     position: relative;
@@ -54,6 +77,11 @@ p{
     text-align: center;
     margin: auto;
     border-radius: 0.2rem;
+  }
+
+  .form-input{
+    display: flex;
+    flex-flow: column;
   }
 }
 
@@ -77,4 +105,10 @@ p{
   .menu{
     visibility: hidden;
   }
+
+  .form-input{
+    display: flex;
+    flex-flow: row;
+  }
+
 }
