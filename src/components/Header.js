@@ -2,20 +2,25 @@ import React, {useState} from "react"
 import logo from "../images/logo.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { useMediaQuery } from 'react-responsive'
+
+
 
 
 
 export default function Header(){
+    const isTabletOrMobile = useMediaQuery({ query: '(max-width:  959px)' })
+    const isBigScreen = useMediaQuery({ query: '(min-width: 960px)' })
     const [isOpen, setIsOpen] = useState(false)
     return(
-        <header>
+        <header className="header">
             <div className="flex">
-                <img src={logo} alt=''/>
+                <img src={logo} alt='' className="logo"/>
                 {isOpen &&
-                <div>
+                <div className="div-nav">
                     <nav>
                         <ul>
-                            <li>Features</li>
+                            <li className="text-red-600">Features</li>
                             <li>Pricing</li>
                             <li>Resources</li>
                         </ul>
@@ -28,13 +33,32 @@ export default function Header(){
                 </div>
                 }
 
-                <button>
+               {isBigScreen &&
+                <div className="div-nav">
+                    <nav>
+                        <ul>
+                            <li className="">Features</li>
+                            <li>Pricing</li>
+                            <li>Resources</li>
+                        </ul>
+
+                        <ul>
+                            <li>Login</li>
+                            <li>Sign up</li>
+                        </ul>
+                    </nav>
+                </div>
+                }
+
+               
+
+                <div className="menu">
                 <FontAwesomeIcon
-                icon={isOpen? faBars : faTimes}
-                className="nav-icon1"
+                icon={isOpen? faTimes : faBars}
+                className="nav-icon"
                 onClick={()=> setIsOpen(!isOpen)}
                 />
-                </button>
+                </div>
                 
             </div>
         </header>
