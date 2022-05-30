@@ -4,9 +4,10 @@ import bgDesktop from '../images/bg-shorten-desktop.svg'
 
 //https://api.shrtco.de/v2/shorten?url=${urlText}`
 export default function Shortener(){
+    
     const [text, setText] = useState('')
     const [links, setLinks] = useState([])
-    const [start, setStart] = useState(false)
+    const [buttonText, setButtonText] = useState("Copy")
 
     
     function handleSubmit(e){
@@ -18,13 +19,39 @@ export default function Shortener(){
             const shortenLink= async () => {
             const res = await fetch (`https://api.shrtco.de/v2/shorten?url=${text}`)
             const data = await res.json()
-            setLinks(data.result)
+            let my = data.result
+            setLinks(prev => [my, ...prev])
+            console.log(links)
+            console.log(my)
             setText('')
             }
             shortenLink()
         }
     }
 
+    function handleCopy(){
+        navigator.clipboard.writeText(links.full_short_link)
+        setButtonText("Copied")
+    }
+
+   
+
+    const linkElem = 
+        links.map((link, index) => {
+            return(
+                <div key={index}>
+            <article>
+                <h6>{link.original_link}</h6>
+            </article>
+            <article>
+               <li>{link.full_short_link}</li>
+               <li><button onClick={handleCopy}>{buttonText}</button></li>
+            </article>
+        </div>
+            )
+        })
+    
+   
     return(
         <section className='shortener'>
             <picture>
@@ -40,19 +67,12 @@ export default function Shortener(){
                     onChange={(e)=> setText(e.target.value)}/>
                     <button 
                     type='submit'
-                    onSubmit={handleSubmit}>Shorten It!</button>
+                    onClick={handleSubmit}>Shorten It!</button>
                 </div>
             </form>
-
-            <div>
-                <article>
-                    <h6>{links.original_link}</h6>
-                </article>
-                <article>
-                   <li><button>{links.full_short_link}</button></li>
-                   <li><button>Copy</button></li>
-                </article>
-            </div>
+        
+         {linkElem}
+            
         </section>
     )
 }
