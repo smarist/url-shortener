@@ -31,7 +31,6 @@ img{
 }
 
 .center{
-  border: 2px solid white;
   text-align: center;
 }
 
@@ -88,6 +87,26 @@ footer{
   margin-left: -2rem;
 }
 
+.boost{
+  position: relative;
+  justify-content: center;
+  justify-items: center;
+  background: hsl(257, 27%, 26%);
+  margin-bottom: -2.99rem;
+  margin-top: 2rem;
+  color: white;
+}
+
+.boost img{
+  height: 17.2rem;
+  width: 100%;
+}
+.boost-inner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 @media screen  and (max-width:  959px){
   .header{
     position: relative;
@@ -118,8 +137,20 @@ footer{
   }
   
   footer section{
+    margin-top: 1.3rem;
     height: 3.5rem;
   }
+
+  .f-div1, .f-div2, .f-div3{
+    margin-top: -7rem;
+    height: 14rem;
+  }
+
+  .f-div4{
+    margin-top: -3rem;
+    height: 5.5rem;
+  }
+
   
 }
 
@@ -154,10 +185,6 @@ footer{
     padding-left: 40px;
     padding-right: 40px;
     justify-content: center;
-  }
-
-  footer article{
-    border: 2px solid red;
   }
 
 }
